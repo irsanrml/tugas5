@@ -15,15 +15,27 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: true,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.light(),
         appBarTheme: AppBarThemeData(backgroundColor: Colors.white),
         inputDecorationTheme: InputDecorationThemeData(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+          outlineBorder: BorderSide(color: Colors.grey),
+          hintStyle: TextStyle(color: Colors.grey),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
             backgroundColor: AppColors.primary,
             foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(),
             padding: EdgeInsets.all(20),
           ),
         ),
@@ -32,6 +44,11 @@ class MainApp extends StatelessWidget {
             shape: RoundedRectangleBorder(),
             padding: EdgeInsets.all(20),
           ),
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+          selectedItemColor: AppColors.primary,
+          unselectedItemColor: Colors.grey,
         ),
       ),
       home: LoginPage(),
