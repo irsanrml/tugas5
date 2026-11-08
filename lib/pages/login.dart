@@ -1,6 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tugas5/colors.dart';
 import 'package:tugas5/pages/profile.dart';
+import 'package:tugas5/pages/register.dart';
 
 class LoginPage extends StatefulWidget {
   const new({super.key});
@@ -14,11 +17,19 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  bool obsecure = true;
+
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  void _obsecurePass() {
+    setState(() {
+      obsecure = !obsecure;
+    });
   }
 
   @override
@@ -37,14 +48,18 @@ class _LoginPageState extends State<LoginPage> {
                   'Selamat Datang',
                   style: GoogleFonts.poppins(
                     fontSize: 24,
+                    color: AppColors.primary,
                     fontWeight: FontWeight.bold,
                   ),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                 ),
                 Text(
                   'Hi, Silakan masuk untuk melanjutkan',
-                  style: GoogleFonts.poppins(fontSize: 16),
-                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: AppColors.primary,
+                  ),
+                  textAlign: TextAlign.left,
                 ),
                 SizedBox(height: 12),
                 Column(
@@ -64,7 +79,10 @@ class _LoginPageState extends State<LoginPage> {
                   controller: emailController,
                   decoration: InputDecoration(
                     hintText: 'Email',
-                    hintStyle: GoogleFonts.poppins(fontSize: 14),
+                    hintStyle: GoogleFonts.poppins(
+                      fontSize: 14,
+                      color: AppColors.secondary,
+                    ),
                   ),
                   validator: (value) {
                     if (value?.isEmpty == true) {
@@ -81,9 +99,19 @@ class _LoginPageState extends State<LoginPage> {
                   controller: passwordController,
                   decoration: InputDecoration(
                     hintText: 'Password',
-                    hintStyle: GoogleFonts.poppins(fontSize: 14),
+                    hintStyle: GoogleFonts.poppins(
+                      fontSize: 14,
+                      color: AppColors.secondary,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        obsecure ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: _obsecurePass,
+                    ),
                   ),
-                  obscureText: true,
+                  obscureText: obsecure,
+                  keyboardType: TextInputType.visiblePassword,
                   validator: (value) {
                     if (value?.isEmpty == true) {
                       return 'Password tidak boleh kosong';
@@ -97,8 +125,8 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    TextButton(
-                      onPressed: () {},
+                    GestureDetector(
+                      onTap: () {},
                       child: Text(
                         'Lupa Password?',
                         style: GoogleFonts.poppins(fontSize: 14),
@@ -107,43 +135,63 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 ElevatedButton(
-                  onPressed: emailController.text.isEmpty
-                      ? null
-                      : () {
-                          if (_formKey.currentState!.validate() == true) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => ProfilePage()),
-                            );
-                          } else {
-                            print('Login Gagal');
-                          }
-                        },
+                  onPressed: () {
+                    if (_formKey.currentState?.validate() == true) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => ProfilePage()),
+                        //(_) => false,
+                      );
+                    }
+                  },
                   child: Text(
                     'Masuk',
-                    style: GoogleFonts.poppins(fontSize: 16),
+                    style: GoogleFonts.poppins(fontSize: 14),
                   ),
                 ),
                 Padding(padding: EdgeInsets.symmetric(vertical: 40)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Belum punya akun?',
-                      style: GoogleFonts.poppins(fontSize: 14),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Daftar',
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    text: 'Belum punya akun? ',
+                    style: GoogleFonts.poppins(fontSize: 14),
+                    children: [
+                      TextSpan(
+                        text: 'Daftar',
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => RegisterPage()),
+                            );
+                          },
+                        style: TextStyle(
+                          color: AppColors.primary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Text(
+                //       'Belum punya akun?',
+                //       style: GoogleFonts.poppins(fontSize: 14),
+                //     ),
+                //     TextButton(
+                //       onPressed: () {},
+                //       child: Text(
+                //         'Daftar',
+                //         style: GoogleFonts.poppins(
+                //           fontSize: 14,
+                //           fontWeight: FontWeight.bold,
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),
