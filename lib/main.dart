@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tugas5/pages/login.dart';
 import 'package:tugas5/pages/themes.dart';
+import 'package:tugas5/pages/login.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,7 +12,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       theme: AppThemes.light,
       home: LoginPage(),
     );

@@ -85,8 +85,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   validator: (value) {
-                    if (value?.isEmpty == true) {
-                      return 'Email tidak boleh kosong';
+                    if (value != null) {
+                      if (value.isEmpty) {
+                        return 'Email tidak boleh kosong';
+                      } else if (!value.contains('@')) {
+                        return 'Format email tidak valid';
+                      }
                     }
                     return null;
                   },
@@ -113,13 +117,14 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: obsecure,
                   keyboardType: TextInputType.visiblePassword,
                   validator: (value) {
-                    if (value?.isEmpty == true) {
-                      return 'Password tidak boleh kosong';
+                    if (value != null) {
+                      if (value.isEmpty) {
+                        return 'Password tidak boleh kosong';
+                      } else if (value.length < 6) {
+                        return 'Password minimal 6 karakter!';
+                      }
                     }
                     return null;
-                  },
-                  onChanged: (value) {
-                    setState(() {});
                   },
                 ),
                 Row(
@@ -137,10 +142,10 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState?.validate() == true) {
-                      Navigator.push(
+                      Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(builder: (_) => ProfilePage()),
-                        //(_) => false,
+                        (_) => false,
                       );
                     }
                   },
@@ -173,25 +178,6 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     Text(
-                //       'Belum punya akun?',
-                //       style: GoogleFonts.poppins(fontSize: 14),
-                //     ),
-                //     TextButton(
-                //       onPressed: () {},
-                //       child: Text(
-                //         'Daftar',
-                //         style: GoogleFonts.poppins(
-                //           fontSize: 14,
-                //           fontWeight: FontWeight.bold,
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
               ],
             ),
           ),

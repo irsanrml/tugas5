@@ -12,7 +12,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  Widget buildTile({required String label}) {
+  Widget buildTile({required String label, String? tambahanText}) {
     return InkWell(
       onTap: () {},
       child: Padding(
@@ -30,7 +30,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
-            Icon(LucideIcons.chevronRight),
+
+            if (tambahanText != null)
+              Text(
+                tambahanText,
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  color: AppColors.black,
+                ),
+              )
+            else
+              const Icon(LucideIcons.chevronRight),
           ],
         ),
       ),
@@ -90,7 +100,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 Divider(height: 1, color: AppColors.secondary),
                 buildTile(label: 'Informasi Aplikasi'),
                 Divider(height: 1, color: AppColors.secondary),
-                buildTile(label: 'Layanan Pelanggan'),
+                buildTile(
+                  label: 'Layanan Pelanggan',
+                  tambahanText: '08529260088',
+                ),
               ],
             ),
             ElevatedButton(
@@ -119,13 +132,19 @@ class _ProfilePageState extends State<ProfilePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 3,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(LucideIcons.home), label: 'Home'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.document_scanner),
+            icon: Icon(LucideIcons.scanLine),
             label: 'Kasir',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.receipt), label: 'Riwayat'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: Icon(LucideIcons.scrollText),
+            label: 'Riwayat',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(LucideIcons.user),
+            label: 'Profile',
+          ),
         ],
       ),
     );
