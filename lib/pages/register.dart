@@ -6,7 +6,7 @@ import 'package:tugas5/pages/homepage.dart';
 import 'package:tugas5/pages/login.dart';
 
 class RegisterPage extends StatefulWidget {
-  const new({super.key});
+  const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -182,10 +182,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState?.validate() == true) {
-                          Navigator.push(
+                          Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(builder: (_) => MainPage()),
-                            //(_) => false,
+                            (_) => false,
                           );
                         }
                       },

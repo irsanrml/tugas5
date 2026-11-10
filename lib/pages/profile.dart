@@ -129,24 +129,24 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3,
-        items: [
-          BottomNavigationBarItem(icon: Icon(LucideIcons.home), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(LucideIcons.scanLine),
-            label: 'Kasir',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(LucideIcons.scrollText),
-            label: 'Riwayat',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(LucideIcons.user),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      //   bottomNavigationBar: BottomNavigationBar(
+      //     currentIndex: 3,
+      //     items: [
+      //       BottomNavigationBarItem(icon: Icon(LucideIcons.home), label: 'Home'),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(LucideIcons.scanLine),
+      //         label: 'Kasir',
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(LucideIcons.scrollText),
+      //         label: 'Riwayat',
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(LucideIcons.user),
+      //         label: 'Profile',
+      //       ),
+      //     ],
+      //   ),
     );
   }
 }

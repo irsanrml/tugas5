@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tugas5/colors.dart';
-import 'package:tugas5/pages/profile.dart';
+import 'package:tugas5/pages/homepage.dart';
 import 'package:tugas5/pages/register.dart';
 
 class LoginPage extends StatefulWidget {
@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                     if (_formKey.currentState?.validate() == true) {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (_) => ProfilePage()),
+                        MaterialPageRoute(builder: (_) => MainPage()),
                         (_) => false,
                       );
                     }
@@ -165,9 +165,10 @@ class _LoginPageState extends State<LoginPage> {
                         text: 'Daftar',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.push(
+                            Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(builder: (_) => RegisterPage()),
+                              (_) => false,
                             );
                           },
                         style: TextStyle(
