@@ -179,21 +179,25 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ],
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState?.validate() == true) {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(builder: (_) => MainPage()),
-                            (_) => false,
-                          );
-                        }
-                      },
-                      child: Text(
-                        'Daftar',
-                        style: GoogleFonts.poppins(fontSize: 14),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState?.validate() == true) {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (_) => MainPage()),
+                              (_) => false,
+                            );
+                          }
+                        },
+                        child: Text(
+                          'Daftar',
+                          style: GoogleFonts.poppins(fontSize: 14),
+                        ),
                       ),
                     ),
+
                     Padding(padding: EdgeInsets.symmetric(vertical: 40)),
                     RichText(
                       textAlign: TextAlign.center,
